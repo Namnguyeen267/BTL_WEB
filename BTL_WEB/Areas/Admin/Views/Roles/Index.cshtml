@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BTL_WEB.Models.Roles>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a  asp-controller="Home" asp-action="Index" asp-area="" >Home</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <span>Quyền</span>
+            </th>
+            <th>
+                <span>Mô tả</span>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RoleID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RoleID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RoleID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

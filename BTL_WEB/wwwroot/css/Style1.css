@@ -1,0 +1,356 @@
+﻿
+:root {
+    --first-color: #1a73e8;
+    --input-color: #808688;
+    --border-color: #dadce0;
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: 1rem;
+    --small-font-size: .75rem;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-image: url('/img/login_background.jpg')
+}
+#showPassword {
+    display: none;
+}
+h1 {
+    margin: 0;
+}
+
+.l-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/img/login_background.jpg')
+}
+
+.form {
+    width: 360px;
+    padding: 4rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+    background-color: aliceblue
+}
+
+.form__title {
+    font-weight: 400;
+    margin-bottom: 3rem;
+}
+
+.form__div {
+    position: relative;
+    height: 48px;
+    margin-bottom: 1.5rem;
+}
+
+.form__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    font-size: var(--normal-font-size);
+    border: 1px solid var(--border-color);
+    border-radius: .5rem;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+.form__register {
+    display: block;
+    font-size: 12px;
+}
+
+     .form__register-link {
+         text-decoration: none;
+     }
+
+     .form__icon-noview {
+         display: none;
+     }
+
+.form__icon-view {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1rem;
+    padding: 1rem;
+    color: #1a73e8;
+}
+#notice {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 1.5rem;
+    color: red;
+}
+.form__register-link {
+    text-decoration: none;
+}
+
+.form__icon-noview {
+    display: none;
+}
+
+.form__icon-view {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1rem;
+    padding: 1rem;
+    color: #1a73e8;
+   
+} 
+.form__label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0 .25rem;
+    color: var(--input-color);
+    font-size: var(--normal-font-size);
+    background-color: #fff;
+    transition: .3s;
+}
+.form__button {
+    display: block;
+    margin-left: auto;
+    padding: .75rem 2rem;
+    border: none;
+    outline: none;
+    background-color: var(--first-color);
+    font-size: var(--normal-font-size);
+    color: #fff;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+    .form__button:hover {
+        box-shadow: 0 10px 36px rgba(0, 0, 0, .15);
+    }
+
+.form__input:focus + .form__label {
+    top: -.5rem;
+    left: .8rem;
+    color: var(--first-color);
+    font-size: var(--small-font-size);
+    font-weight: 500;
+    z-index: 10;
+}
+
+.form__input:not(:placeholder-shown).form__input:not(:focus) + .form__label {
+    top: -.5rem;
+    left: .8rem;
+    font-size: var(--small-font-size);
+    font-weight: 500;
+    z-index: 10;
+}
+
+.form__input:focus {
+    border: 1.5px solid var(--first-color);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .5);
+    padding-bottom: 300px;
+}
+
+.modal__content {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, .6) -1px 2px 2px 1px;
+}
+
+.modal__text {
+    padding-left: 20px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(251, 87, 49);
+}
+
+.modal__wrong {
+    border: 2px solid red;
+}
+
+.modal__correct {
+    border: 2px solid green;
+}
+
+.modal__close {
+    color: #aaaaaa;
+    float: right;
+    padding: 14px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+    .modal__close:hover {
+        color: #ccc;
+    }
+
+#notice {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 1.5rem;
+    color: red;
+}
+
+.form__register {
+    display: block;
+    font-size: 12px;
+}
+
+.form__register-link {
+    text-decoration: none;
+}
+
+.form__view-pass {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+    .form__view-pass .form__icon-view {
+        font-size: 1rem;
+        color: #1a73e8;
+    }
+
+.table {
+    height: 500px;
+    overflow: auto;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+.table__total-count {
+    padding: 20px;
+    font-size: 20px;
+}
+
+.table__total-price {
+    padding: 20px;
+    font-size: 20px;
+}
+
+
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f6f8fc;
+    color: #8493a5;
+    font-size: 15px;
+}
+
+th, td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 20px;
+    word-break: break-all; /*Thuộc tính word-break sẽ làm cho những chữ trong một từ không còn là một thể thống nhất, nghĩa là có thể xuống hàng bất cứ vị trí nào trong từ*/
+    text-align: center;
+}
+
+    td p {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+table {
+    width: 80%;
+    table-layout: fixed;
+}
+
+td img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid #ced0d2;
+}
+
+tr:hover td {
+    color: #0298cf;
+    cursor: pointer;
+    background-color: #f6f9fc;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: lawngreen;
+}
+
+.btn-tool {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    padding: 10px;
+    display: block;
+}
+
+.btn-tool__edit {
+    background-color: #0298cf;
+}
+
+.btn-tool__del {
+    background-color: #f80000;
+}
+
+.btn-tools {
+    display: flex;
+    justify-content: center;
+}
+
+    .btn-tools i {
+        color: white;
+    }
+
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}

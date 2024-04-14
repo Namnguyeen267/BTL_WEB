@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BTL_WEB.Models.Accounts>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <span>Tài khoản</span>
+            </th>
+            <th>
+                <span>Mật khẩu</span>
+            </th>          
+            <th>
+                <span>Tên đầy đủ</span>
+            </th>
+            <th>
+                <span>Email</span>
+            </th>
+            <th>
+                <span>Số điện thoại</span>
+            </th>
+            <th>
+                <span>Quyền</span> 
+            </th>
+            <th>
+                <span>Ngày tạo tài khoản</span>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>           
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AccountID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AccountID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AccountID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

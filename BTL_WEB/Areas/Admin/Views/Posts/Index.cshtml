@@ -1,0 +1,84 @@
+﻿@model IEnumerable<BTL_WEB.Models.Posts>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <span>Tác giả</span>
+            </th>
+            <th>
+                <span>Thể loại</span>
+            </th>
+            <th>
+                <span>Ảnh</span>
+            </th>
+            <th>
+                <span>Từ khóa</span>
+            </th>
+            <th>
+                <span>Tin hot</span>
+            </th>
+            <th>
+                <span>Tin mới</span>
+            </th>
+            <th>
+                <span>Đã xác nhận</span>
+            </th>
+            <th>
+                <span>Thời gian tạo</span>
+            </th>
+            <th>
+                <span>Thời gian đăng</span>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Keyword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isHot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isNewfeed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isAccept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PostID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

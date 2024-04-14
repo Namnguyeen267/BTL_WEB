@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BTL_WEB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/all.min.css" />
+	<link rel="stylesheet" href="~/css/slick.css" />
+	<link rel="stylesheet" href="~/css/simple-line-icons.css" />
+	<link rel="stylesheet" href="~/css/style.css" />
+	<link rel="stylesheet" href="~/css/slim.css" />
+    <link rel="stylesheet" href="~/BTL_WEB.styles.css" asp-append-version="true" />
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@@themepixels">
+    <meta name="twitter:creator" content="@@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Slim">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="http://themepixels.me/slim/img/slim-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://themepixels.me/slim">
+    <meta property="og:title" content="Slim">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+
+    <meta property="og:image" content="http://themepixels.me/slim/img/slim-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/slim/img/slim-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="ThemePixels">
+
+    <title>Slim Responsive Bootstrap 4 Admin Template</title>
+
+    <!-- vendor css -->
+    <link href="~/AdminAsset/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/AdminAsset/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="~/AdminAsset/lib/chartist/css/chartist.css" rel="stylesheet">
+    <link href="~/AdminAsset/lib/rickshaw/css/rickshaw.min.css" rel="stylesheet">
+
+    <!-- Slim CSS -->
+    <script src="~/AdminAsset/lib/jquery/js/jquery.js"></script>
+    <script src="~/AdminAsset/lib/popper.js/js/popper.js"></script>
+    <script src="~/AdminAsset/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/AdminAsset/lib/jquery.cookie/js/jquery.cookie.js"></script>
+    <script src="~/AdminAsset/lib/chartist/js/chartist.js"></script>
+    <script src="~/AdminAsset/lib/d3/js/d3.js"></script>
+    <script src="~/AdminAsset/lib/rickshaw/js/rickshaw.min.js"></script>
+    <script src="~/AdminAsset/lib/jquery.sparkline.bower/js/jquery.sparkline.min.js"></script>
+
+    <script src="~/AdminAsset/js/ResizeSensor.js"></script>
+    <script src="~/AdminAsset/js/dashboard.js"></script>
+    <script src="~/AdminAsset/js/slim.js"></script>
+
+</head>
+<body>
+    <div class="slim-header">
+		<div class="container">
+            <div class="slim-header-left">
+                <h2 class="slim-logo"><a asp-action="Index" asp-controller="Home">TheThao24h</a></h2>
+
+                <div class="search-box">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                    <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                </div><!-- search-box -->                   
+				
+            </div>
+			<div class="" slim-header-right>
+                <a asp-action="Login" asp-controller="Home" class="text-style">Đăng nhập</a> |
+                <a asp-action="Register" asp-controller="Home" class="text-style"> Đăng ký</a>
+            </div>
+		</div>
+    </div>
+	<header class="header-default">
+	
+		<nav class="navbar navbar-expand-lg">
+			
+			<div class="container-xl">
+				<!-- site logo -->
+				
+
+				<div class="collapse navbar-collapse">
+					<!-- menus -->
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown active">
+							<a class="nav-link " asp-controller="Home" asp-action="Index">Home</a>
+					
+						</li>
+						<li class="nav-item">
+                            <a class="nav-link" asp-controller="BongDaVN" asp-action="Index">Bóng đá Việt Nam</a>
+						</li>
+						
+						<li class="nav-item dropdown">
+                            <a class="nav-link " asp-controller="BongDaTG" asp-action="Index">Bóng đá Thế giới</a>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="BongRo" asp-action="Index">Bóng rổ</a>
+                        </li>
+
+						
+						<li class="nav-item">
+                            <a class="nav-link" asp-controller="Tennis" asp-action="Index">Quần vợt</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-controller="Roles" asp-area="Admin" asp-action="Index">Admin</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- header right section -->
+				<div class="header-right">
+			
+					<!-- header buttons -->
+				
+				</div>
+			</div>
+		</nav>
+	</header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+  
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
