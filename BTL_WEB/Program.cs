@@ -1,4 +1,4 @@
-using BTL_WEB.Data;
+﻿using BTL_WEB.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,8 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DtbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("QlyWeb")));
+//builder.Services.AddDefaultIdentity<IdentityUser>.AddRoles<IdentityRole>.AddEntityFrameworkStores<DtbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession(options =>
+{
+	options.Cookie.Name = ".MySession";
+	options.IdleTimeout = TimeSpan.FromSeconds(3600); // Thời gian timeout
+	options.Cookie.IsEssential = true;
+});
+
 //builder.Services.AddControllersWithViews().AddRazorPagesOptions(options => options.Conventions.AddAreaPageRoute("Admin","/Index","/Index"));
 var app = builder.Build();
 
@@ -33,6 +42,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=home}/{action=index}/{id?}");
-
+app.UseSession();
 
 app.Run();

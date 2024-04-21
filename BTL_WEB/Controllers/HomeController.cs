@@ -31,29 +31,42 @@ namespace BTL_WEB.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(string Username,string Password)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-				var user = _context.Accounts.Include(u=>u.Role).FirstOrDefault(u => u.Username == Username && u.Password == Password);
-				if (user != null)
-				{
-                    if(user.RoleID == 1)
-                    {
-                        return RedirectToAction("Index","Home" /*new {area="Admin"}*/);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-				}
+            var user = _context.Accounts.Include(u => u.Role).FirstOrDefault(u => u.Username == model.UserName && u.Password == model.Password);
+            if (user != null)
+            {
+                // Lưu thông tin về vai trò của người dùng vào Session
+                if (user.Role != null && user.Role.RoleName == "Admin")
+                {
+                    // Lưu thông tin về vai trò của người dùng vào Session
+                    HttpContext.Session.SetString("UserRole", "Admin");
+
+                    // Chuyển hướng đến action Index của controller Home trong khu vực Admin
+                    return RedirectToAction("Index", "Roles", new { area = "Admin" });
+                }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    // Lưu thông tin về vai trò của người dùng vào Session
+                    HttpContext.Session.SetString("UserRole", "User");
+
+                    return RedirectToAction("Index", "Home");
                 }
-			
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
         public IActionResult Register()
         {
             return View();
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            HttpContext.Session.Remove("Username");
+            return RedirectToAction("Login", "Home");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

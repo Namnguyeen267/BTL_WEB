@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
+                <input asp-for="ImageUrl" type="file" class="form-control" />
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,11 +41,7 @@
                     <input class="form-check-input" asp-for="isNewfeed" /> @Html.DisplayNameFor(model => model.isNewfeed)
                 </label>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="isAccept" /> @Html.DisplayNameFor(model => model.isAccept)
-                </label>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="CreatedTime" class="control-label"></label>
                 <input asp-for="CreatedTime" class="form-control" />

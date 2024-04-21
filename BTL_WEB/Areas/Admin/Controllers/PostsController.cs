@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTL_WEB.Data;
 using BTL_WEB.Models;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using BTL_WEB.Models.ViewModel;
 
 namespace BTL_WEB.Areas.Admin.Controllers
 {
@@ -46,7 +48,11 @@ namespace BTL_WEB.Areas.Admin.Controllers
 
             return View(posts);
         }
-
+        //public IActionResult GetImage(int ItemId)
+        //{
+        //    var item = _context.Ge
+        //    return File()
+        //}
         // GET: Admin/Posts/Create
         public IActionResult Create()
         {
@@ -63,7 +69,7 @@ namespace BTL_WEB.Areas.Admin.Controllers
         public async Task<IActionResult> Create([Bind("PostID,AccountID,CategoryID,ImageUrl,Keyword,isHot,isNewfeed,isAccept,CreatedTime,Published")] Posts posts)
         {
             if (ModelState.IsValid)
-            {
+            {   
                 _context.Add(posts);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -76,19 +82,34 @@ namespace BTL_WEB.Areas.Admin.Controllers
         // GET: Admin/Posts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var post =await _context.Posts.FindAsync(id);
+            if (post == null)
             {
                 return NotFound();
             }
 
-            var posts = await _context.Posts.FindAsync(id);
-            if (posts == null)
+            var postviewmodel = new PostViewModel
             {
-                return NotFound();
-            }
-            ViewData["AccountID"] = new SelectList(_context.Accounts, "AccountID", "ConfirmPassword", posts.AccountID);
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryId", "CategoryDescription", posts.CategoryID);
-            return View(posts);
+                PostID = post.PostID,
+                FullName = post.Account.FullName,
+                CategoryName=post.Category.CategoryName,
+                ImageUrl= post.ImageUrl,
+                Keyword= post.Keyword,
+                isHot=post.isHot,
+                isAccept=post.isAccept,
+                isNewfeed=post.isNewfeed,
+                CreatedTime=post.CreatedTime,
+                Published=post.Published,
+
+            };
+         
+            ViewData["AccountID"] = new SelectList(_context.Accounts, "AccountID", "AccountID", postviewmodel.AccountID);
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", postviewmodel.CategoryID);
+            return View(postviewmodel);
         }
 
         // POST: Admin/Posts/Edit/5
@@ -123,8 +144,8 @@ namespace BTL_WEB.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountID"] = new SelectList(_context.Accounts, "AccountID", "ConfirmPassword", posts.AccountID);
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryId", "CategoryDescription", posts.CategoryID);
+            ViewData["AccountID"] = new SelectList(_context.Accounts, "AccountID", "AccountID", posts.AccountID);
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", posts.CategoryID);
             return View(posts);
         }
 

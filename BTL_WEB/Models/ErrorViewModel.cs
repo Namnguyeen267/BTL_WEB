@@ -1,4 +1,4 @@
-namespace BTL_WEB.Models
+﻿namespace BTL_WEB.Models
 {
     public class ErrorViewModel
     {

@@ -1,10 +1,11 @@
-﻿@model Accounts
+﻿@model LoginViewModel;
 <link href="~/css/Style1.css" rel="stylesheet">
 
 @{
+    ViewData["Title"] = "Login";
     Layout = null;
 }
-<div class="container ">
+ <div class="container ">
     <div class="l-form">
         <form class="form">
             <h1 class="form__title">
@@ -17,16 +18,36 @@
             <div class="form__div">
                 <input type="password" asp-for="Password" class="form__input form__input-pass" />
                 <label for="showPassword" class="form__label">Password</label>
-                <div class="form__view-pass">
-                    <i class="uil uil-eye form__icon form__icon-view"></i>
-                </div>
+               
             </div>           
             <span class="form__register">
                 Bạn chưa có tài khoản?<a class="form__register-link" href="/Home/Register"> Register</a>
             </span>
-            <span id="notice" runat="server"></span>
-            <input type="submit" class="form__button"  value="Sign Up" />
+            <div class="form-group">
+                <input type="submit" class="form__button" value="Sign Up" />
+            </div>
+            
         </form>
     </div>
 
+</div> 
+<div class="container">
+    <div class="l-form">
+        <form asp-action="Login" asp-controller="Home" class="form">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form__label" placeholder="Name" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
